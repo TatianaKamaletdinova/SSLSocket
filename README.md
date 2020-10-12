@@ -1,7 +1,5 @@
 # SSLSocket
 
- val serverAddress: InetAddress = InetAddress.getByName("192.168.0.0")
-
         val cf: CertificateFactory = CertificateFactory.getInstance("X.509")
         val caInput: InputStream =
             requireContext().resources.openRawResource(
@@ -34,7 +32,7 @@
         }
 
         val factory = TLSSocketFactory(tmf)
-        sslSocket = factory.createSocket(serverAddress, 9001) as SSLSocket
+        sslSocket = factory.createSocket(serverAddress, port) as SSLSocket
         sslSocket.useClientMode = true
 
         try{
