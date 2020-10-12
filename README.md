@@ -9,7 +9,7 @@
         val ca: X509Certificate = caInput.use {
             cf.generateCertificate(it) as X509Certificate
         }
-        System.out.println("ca=" + ca.subjectDN)
+    
 
         // Create a KeyStore containing our trusted CAs
         val keyStoreType = KeyStore.getDefaultType()
@@ -31,7 +31,7 @@
             init(null, tmf.trustManagers, SecureRandom())
         }
 
-        val factory = TLSSocketFactory(tmf)
+        val factory = context.socketFactory
         sslSocket = factory.createSocket(serverAddress, port) as SSLSocket
         sslSocket.useClientMode = true
 
